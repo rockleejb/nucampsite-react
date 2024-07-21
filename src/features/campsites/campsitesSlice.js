@@ -6,5 +6,6 @@ export const selectAllCampsites = () => {
 
 export const selectRandomCampsite = () => {
     const randomIndex = Math.floor(Math.random() * CAMPSITES.length);
-    return CAMPSITES[randomIndex];
+    console.log(CAMPSITES.find((campsite) => campsite.id === randomIndex));
+    return CAMPSITES.find((campsite) => campsite.id === randomIndex);
 }
