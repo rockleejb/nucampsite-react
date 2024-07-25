@@ -6,7 +6,6 @@ import CampsiteDetail from "../features/campsites/CampsiteDetail";
 const CampsiteDetailPage = () => {
   const { campsiteId } = useParams();
   const campsite = selectCampsiteById(campsiteId);
-  console.log(campsite);
   return (
     <Container>
       <Row>
