@@ -1,4 +1,4 @@
-export const ValidateCommentForm = (values) => {
+export const validateCommentForm = (values) => {
   const errors = {};
 
   if (!values.rating) {
