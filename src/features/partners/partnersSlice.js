@@ -22,28 +22,35 @@ export const fetchPartners = createAsyncThunk(
 );
 
 const partnersSlice = createSlice({
-  name: 'partners',
+  name: "partners",
   initialState,
   reducers: {},
   extraReducers: {
-      [fetchPartners.pending]: (state) => {
-          state.isLoading = true;
-      },
-      [fetchPartners.fulfilled]: (state, action) => {
-          state.isLoading = false;
-          state.errMsg = '';
-          state.partnersArray = mapImageURL(action.payload);
-      },
-      [fetchPartners.rejected]: (state, action) => {
-          state.isLoading = false;
-          state.errMsg = action.error ? action.error.message : 'Fetch failed';
-      }
-  }
+    [fetchPartners.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchPartners.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.errMsg = "";
+      state.partnersArray = mapImageURL(action.payload);
+    },
+    [fetchPartners.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.errMsg = action.error ? action.error.message : "Fetch failed";
+    },
+  },
 });
 
 export const partnersReducer = partnersSlice.reducer;
 
 export const selectAllPartners = (state) => state.partners.partnersArray;
 
-export const selectFeaturedPartner = (state) =>
-  state.partners.partnersArray.find((partner) => partner.featured);
+export const selectFeaturedPartner = (state) => {
+  return {
+    featuredItem: state.partners.partnersArray.find(
+      (partner) => partner.featured
+    ),
+    isLoading: state.partners.isLoading,
+    errMsg: state.partners.errMsg,
+  };
+};
